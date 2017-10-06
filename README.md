@@ -1,7 +1,7 @@
 # NetSuite SOAP client for NodeJS based apps (v2017.2)
 
 This library is at early alpha stage, don't expect it to do much. If you are using NodeJS and struggling to get data from NetSuite's SOAP based SuiteTalk API
-then take a looking through the code.
+then looking through the code may prove informative.
 
 # Install
 
@@ -36,9 +36,9 @@ while (result) {
  * FolderSearch
  * FileSearch
 
-#Testing
+# Testing
 To run unit tests, execute `npm test`
 
 # Licence
 
-This Pipedrive API client is distributed under the MIT licence.
+This NetSuite SOAP client is distributed under the MIT licence.
