@@ -3,5 +3,6 @@
 .eslintignore
 .eslintrc.json
 .npmignore
-config/*.orig.json
+config/*
 test/*
+*.tgz
