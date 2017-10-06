@@ -64,6 +64,35 @@ class NetSuite {
     if (pageIndex >= totalPages) return null
     return callNs(client.NetSuiteService.NetSuitePort.searchMoreWithId, {searchId: searchId, pageIndex: pageIndex + 1})
   }
+
+  async get (options) {
+    let internalId = _.get(options, ['internalId'])
+    if (!internalId) throw new Error('options has a blank internalId')
+    let type = _.get(options, ['type'])
+    if (!type) throw new Error('options has a blank type')
+
+    let recordRef
+    switch (type) {
+      case 'file':
+        // <?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Header><applicationInfo xmlns="urn:messages_2016_2.platform.webservices.netsuite.com"><applicationId>CA830599-19AE-46C0-83EF-EA667DAD8BE7</applicationId></applicationInfo></soap:Header><soap:Body><get xmlns="urn:messages_2016_2.platform.webservices.netsuite.com"><baseRef xmlns:q1="urn:core_2016_2.platform.webservices.netsuite.com" xsi:type="q1:RecordRef" internalId="8" type="file" /></get></soap:Body></soap:Envelope>
+        recordRef = {
+          attributes: {
+            'xmlns:q1': 'urn:core_' + version + '.platform.webservices.netsuite.com',
+            'xsi:type': 'q1:RecordRef',
+            'internalId': internalId,
+            'type': type
+          }
+        }
+        break
+      default:
+        throw new Error('unknown get record type: ' + type)
+    }
+    let client = await soapClient(this)
+    let request = {
+      recordRef: recordRef
+    }
+    return callNs(client.NetSuiteService.NetSuitePort.get, request)
+  }
 }
 
 const soapClient = async (self) => {

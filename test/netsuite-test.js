@@ -39,6 +39,17 @@ describe('NetSuite class', function () {
     let result = await ns.search({type: 'FileSearch'})
     expect(result.searchResult.status.attributes.isSuccess).to.equal('true')
   })
+
+  it('should get files', async function () {
+    let ns = new NetSuite(opts())
+    let internalId = '88'
+    let result = await ns.get({type: 'file', internalId: internalId})
+    expect(result.readResponse).to.be.a('object')
+    expect(result.readResponse.status).to.be.a('object')
+    expect(result.readResponse.status.attributes).to.be.a('object')
+    expect(result.readResponse.status.attributes.isSuccess).to.equal('true')
+    expect(result.readResponse.record.attributes.internalId).to.equal(internalId)
+  })
 })
 
 const opts = () => {
