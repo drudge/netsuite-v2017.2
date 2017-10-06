@@ -37,6 +37,14 @@ class NetSuite {
           }
         }
         break
+      case 'FileSearch':
+        searchRecord = {
+          attributes: {
+            'xmlns:q1': 'urn:filecabinet_' + version + '.documents.webservices.netsuite.com',
+            'xsi:type': 'q1:FileSearch'
+          }
+        }
+        break
       default:
         throw new Error('unknown search record type')
     }
