@@ -1,6 +1,7 @@
 .vscode
 .editorconfig
 .eslintignore
-.eslintrc
-npmignore
+.eslintrc.json
+.npmignore
+config/*.orig.json
 test/*
