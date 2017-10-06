@@ -1,0 +1,8 @@
+.vscode
+.editorconfig
+.eslintignore
+.eslintrc.json
+.npmignore
+config/*
+test/*
+*.tgz
