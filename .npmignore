@@ -4,5 +4,6 @@
 .eslintrc.json
 .npmignore
 config/*
+examples/*
 test/*
 *.tgz

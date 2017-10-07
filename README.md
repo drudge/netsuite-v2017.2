@@ -17,7 +17,7 @@ var NetSuite = require('netsuite-v2017.2');
 var ns = new NetSuite({appId: 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA', passport: {account: 'TSTDRV111111', email: 'you@yourcompany.com', password: 'shhhhh'}});
 ```
 
-# Retrieve Files in the file cabinet
+# Search and SearchMore Operation
 
 Here's a quick example that will loop through all files in your account:
 
@@ -31,12 +31,12 @@ while (result) {
 }
 ```
 
-# Supported seach objects
-
+Supported search objects
  * FolderSearch
  * FileSearch
 
-# Get a file from the file cabinet
+
+# Get Operation
 
 ```js
 var NetSuite = require('netsuite-v2017.2');
@@ -45,6 +45,10 @@ var ns = new NetSuite({appId: 'AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA', passport: 
 var result = await ns.get({type: 'file', internalId: '88'});
 var b64Content = result.readResponse.record.content;
 ```
+
+Supported get objects
+ * FolderSearch
+ * FileSearch
 
 # Testing
 To run unit tests, execute `npm test`
